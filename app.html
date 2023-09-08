@@ -84,7 +84,69 @@
       </nav>
     </header>
     <main class="flex-shrink-0">
-      <div class="container"></div>
+      <div class="container">
+        <h1 class="display-3 text-center">Shylock Loan Calculator</h1>
+        <div class="row">
+          <div class="col-4 p-3 border border-black d-flex flex-column">
+            <div class="d-flex mb-3">
+              <label for="loanAmount" class="form-label col-4">Amount:</label>
+              <input id="loanAmount" type="number" class="form-control col" />
+            </div>
+            <div class="d-flex mb-3">
+              <label for="loanTerm" class="form-label col-4">Term:</label>
+              <input id="loanTerm" type="number" class="form-control col" />
+            </div>
+            <div class="d-flex">
+              <label for="loanInterest" class="form-label col-4"
+                >Interest (%):</label
+              >
+              <input id="loanInterest" type="number" class="form-control col" />
+            </div>
+            <div class="text-end mt-auto">
+              <button
+                id="btnSubmit"
+                type="button"
+                class="btn btn-warning btn-lg"
+              >
+                Calculate Loan
+              </button>
+            </div>
+          </div>
+          <div class="col-8 p-3 border border-black">
+            <h2 class="text-center border-bottom border-black">
+              Your Monthly Payment
+            </h2>
+            <div class="row">
+              <div class="col-12">
+                <div class="mt-5">
+                  <h3 class="display-5 text-center">$100.00</h3>
+                </div>
+              </div>
+              <div class="col-12 gx-5 mt-5">
+                <div class="row">
+                  <div class="col-6">Total Principal:</div>
+                  <div id="totalPrincipal" class="col-6 text-end">
+                    $25,000.00
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Total Interest:</div>
+                  <div id="totalInterest" class="col-6 text-end">$3,306.85</div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Total Cost:</div>
+                  <div id="totalCost" class="col-6 text-end">$28,306.85</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 table-responsive">
+            <table class="table table-striped table-sm"></table>
+          </div>
+        </div>
+      </div>
     </main>
     <footer class="footer mt-auto py-3 bg-dark fixed-bottom">
       <div class="container-fluid">
