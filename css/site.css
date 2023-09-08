@@ -1,0 +1,95 @@
+:root {
+  --color-blue: #0d6efd;
+  --color-indigo: #6610f2;
+  --color-purple: #6f42c1;
+  --color-pink: #d63384;
+  --color-red: #dc3545;
+  --color-orange: #fd7e14;
+  --color-yellow: #ffc107;
+  --color-green: #198754;
+  --color-teal: #20c997;
+  --color-cyan: #0dcaf0;
+  --color-gray: #adb5bd;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-dark: #332d2d;
+  --color-light: #fbfbfb;
+
+  --light: #f0f0f0;
+  --dark: #1a1a1a;
+  --primary-light: #cce5ff;
+  --primary-med-light: #99c8ff;
+  --primary-med: #66a2ff;
+  --primary-med-dark: #1a709f;
+  --primary-dark: #001b47;
+  --secondary-light: #ffd8a5;
+  --secondary-med-light: #ffa08e;
+  --secondary-med: #ff7d57;
+  --secondary-med-dark: #db5c30;
+  --secondary-dark: #620d00;
+  --tertiary-light: #7effa8;
+  --tertiary-med-light: #5fca80;
+  --tertiary-med: #39b066;
+  --tertiary-med-dark: #207c47;
+  --tertiary-dark: #00331a;
+}
+
+body {
+  color: var(--dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-dark);
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+main > .container {
+  padding: 70px 15px 80px;
+}
+
+/* Change this color to suit the project, then remove comment! */
+.checklist > li i {
+  color: var(--color-green);
+}
+
+footer .social > a {
+  color: var(--light);
+  opacity: 75%;
+}
+
+footer .social > a:hover {
+  opacity: 30%;
+}
+
+.jscolor {
+  color: #f0db4f;
+}
+
+.bscolor {
+  color: #8312fa;
+}
+
+.html5color {
+  color: #e44d26;
+}
+
+.css3color {
+  color: #0a71b8;
+}
+
+@media screen and (max-width: 767px) {
+  main > .container {
+    margin: 0px auto 80px auto;
+  }
+}
