@@ -60,7 +60,7 @@ main > .container {
 
 /* Change this color to suit the project, then remove comment! */
 .checklist > li i {
-  color: var(--color-green);
+  color: var(--color-yellow);
 }
 
 footer .social > a {
