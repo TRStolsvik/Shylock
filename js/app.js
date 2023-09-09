@@ -1,6 +1,7 @@
 (function (app) {
   app.shylock = function () {
-    getValues();
+    let submitButton = document.getElementById('btnSubmit');
+    document.addEventListener('click', getValues);
   };
 
   // Get te values from the user input and trigger other function calls.
