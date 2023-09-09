@@ -46,11 +46,6 @@
       // Calculate Current balance amount
       currentBalance = currentBalance - monthlyPrincipal;
 
-      // console.log(monthlyPayment);
-      // console.log(monthlyInterest);
-      // console.log(totalInterest);
-      // console.log(monthlyPrincipal);
-      // console.log(currentBalance);
       displayLoanTable(
         currentMonth,
         monthlyPayment,
@@ -101,6 +96,7 @@
     // Append the row to the table body.
     tableBody.appendChild(tableRow);
   }
+
   // Display loan header
   function displayLoanHeader(
     monthlyPayment,

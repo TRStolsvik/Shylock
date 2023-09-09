@@ -101,7 +101,7 @@
                 aria-controls="accordionPanelOne"
                 class="accordion-button bg-dark text-light"
               >
-                Function Name #1
+                getValues()
               </button>
             </h3>
             <div
@@ -112,17 +112,128 @@
                 <div class="row row-cols-1 row-cols-md-2">
                   <div class="col col-md-8">
                     <pre data-start="1"><code class="language-javascript">
-                            // Call Hello World!
-                            function HelloWorld() {
-                                alert('Hello World!');
-                            }                                            
+                      function getValues() {
+                        document.getElementById('results').innerHTML = '';
+                    
+                        // Get the value from amount input.
+                        let loanAmount = document.getElementById('loanAmount').value;
+                        // Get the value from term input.
+                        let loanTerm = document.getElementById('loanTerm').value;
+                        // Get the value from Interest input.
+                        let loanInterest = document.getElementById('loanInterest').value;
+                    
+                        // Parse values from amount and term to integers, and interest to float.
+                        loanAmount = Number.parseFloat(loanAmount);
+                        loanTerm = Number.parseInt(loanTerm);
+                        loanInterest = Number.parseFloat(loanInterest);
+                    
+                        let monthlyPayment = 0;
+                        let currentMonth = 0;
+                        let currentBalance = loanAmount;
+                        let totalInterest = 0;
+                    
+                        // Calculate monthly interest
+                        let interestRate = loanInterest / 1200;
+                    
+                        for (let i = 0; i < loanTerm; i++) {
+                          currentMonth += 1;
+                    
+                          // Calculate Payment amount
+                          monthlyPayment = calcMonthPay(loanAmount, interestRate, loanTerm);
+                    
+                          // Calculate Interest amount
+                          let monthlyInterest = calcMonthInt(currentBalance, interestRate);
+                    
+                          // Calculate Total Interest amount
+                          totalInterest += monthlyInterest;
+                    
+                          // Calculate Principal amount
+                          let monthlyPrincipal = monthlyPayment - monthlyInterest;
+                    
+                          // Calculate Current balance amount
+                          currentBalance = currentBalance - monthlyPrincipal;
+                    
+                          displayLoanTable(
+                            currentMonth,
+                            monthlyPayment,
+                            monthlyPrincipal,
+                            monthlyInterest,
+                            totalInterest,
+                            currentBalance
+                          );
+                        }
+                        let totalCost = totalInterest + loanAmount;
+                    
+                        displayLoanHeader(monthlyPayment, loanAmount, totalInterest, totalCost);
+                      }                                            
                         </code></pre>
                   </div>
                   <div class="col col-md-4">
-                    <h5>HelloWorld()</h5>
+                    <h5>getValues()</h5>
                     <p>
-                      Hello World is a function that displays an alert with a
-                      message of "Hello World!"
+                      The function getValues() acts as the controller for the
+                      application and first off clears the HTML of the results
+                      ID, in case we do multiple different calculations in a
+                      row, where we want a fresh set of numbers to display.
+                    </p>
+                    <p>
+                      Next up we get the values from the user inputs. These
+                      inputs have placeholder values, but they can also be
+                      changed by the user at will. We also make sure to parse
+                      these numbers to integer, float and integer respectively,
+                      so that we are working with numbers instead of strings
+                      going forward.
+                    </p>
+                    <p>
+                      Next up we declare a set of variables that we need to have
+                      in the coming for-loop, and we don't want to declare all
+                      of them every time the loop iterates, so we do it before
+                      it starts. The loop itself starts at zero, and runs for
+                      the length of the loan term, however long the user wants
+                      it to be, and we iterate by one at a time, expecting each
+                      term to be one month.
+                    </p>
+                    <p>Once inside the loop we do the following:</p>
+                    <ul>
+                      <li>
+                        We increment our currentMonth variable by 1, which will
+                        be used in the appending to the table for display at the
+                        end.
+                      </li>
+                      <li>
+                        We call the calcMonthPay() function and assign it's
+                        returned result to the monthlyPayment variable.
+                      </li>
+                      <li>
+                        We declare the variable monthlyInterest and assign the
+                        returned result of the calcMonthInt() function.
+                      </li>
+                      <li>
+                        We increment the value in the totalInterest variable by
+                        the value in the monthlyInterest variable.
+                      </li>
+                      <li>
+                        We declare the monthlyPrincipal variable and assign to
+                        it the result of the monthlyPayment variable minus the
+                        monthlyInterest variable.
+                      </li>
+                      <li>
+                        We assign the result of the currentBalance variable
+                        minus the monthlyPrincipal variable to the
+                        currentBalance variable, replacing the old value.
+                      </li>
+                      <li>Finally we call the displayLoanTable() function.</li>
+                    </ul>
+                    <p>
+                      Once back outside the loop when it's finished, we declare
+                      a variable called totalCost, and assign to it the result
+                      of the totalInterest variable plus the loanAmount
+                      variable.
+                    </p>
+                    <p>
+                      Finally for this function, we call the displayLoanHeader()
+                      function, which displays the immediately critical
+                      information at the top of the page.
                     </p>
                   </div>
                 </div>
@@ -141,7 +252,7 @@
                 aria-controls="accordionPanelTwo"
                 class="accordion-button bg-dark text-light"
               >
-                Function Name #2
+                calcMonthInt()
               </button>
             </h3>
             <div id="accordionPanelTwo" class="accordion-collapse collapse">
@@ -149,17 +260,206 @@
                 <div class="row row-cols-1 row-cols-md-2">
                   <div class="col col-md-8">
                     <pre data-start="5"><code class="language-javascript">
-                            // Call Hello World!
-                            function HelloWorld() {
-                                alert('Hello World!');
-                            }                                            
+                      function calcMonthInt(currentBalance, interestRate) {
+                        return currentBalance * interestRate;
+                      }                                            
                         </code></pre>
                   </div>
                   <div class="col col-md-4">
-                    <h5>HelloWorld()</h5>
+                    <h5>calcMonthInt()</h5>
                     <p>
-                      Hello World is a function that displays an alert with a
-                      message of "Hello World!"
+                      This function simply calculates the monthly interest
+                      payment by taking in two parameters, currentBalance and
+                      interestRate, and returns them times each other.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="accordionItemThree" class="accordion mt-1">
+          <div class="accordion-item bg-secondary-subtle">
+            <h3 class="accordion-header">
+              <button
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionPanelThree"
+                aria-expanded="true"
+                aria-controls="accordionPanelThree"
+                class="accordion-button bg-dark text-light"
+              >
+                calcMonthPay()
+              </button>
+            </h3>
+            <div id="accordionPanelThree" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-md-2">
+                  <div class="col col-md-8">
+                    <pre data-start="5"><code class="language-javascript">
+                      function calcMonthPay(loanAmount, interestRate, loanTerm) {
+                        return (loanAmount * interestRate) / (1 - (1 + interestRate) ** -loanTerm);
+                      }                                            
+                        </code></pre>
+                  </div>
+                  <div class="col col-md-4">
+                    <h5>calcMonthPay()</h5>
+                    <p>
+                      This function is responsible for calculating the actual
+                      monthly payment. It does this by taking in three
+                      parameters, the loanAmount, interestRate and loanTerm.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="accordionItemFour" class="accordion mt-1">
+          <div class="accordion-item bg-secondary-subtle">
+            <h3 class="accordion-header">
+              <button
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionPanelFour"
+                aria-expanded="true"
+                aria-controls="accordionPanelFour"
+                class="accordion-button bg-dark text-light"
+              >
+                displayLoanTable()
+              </button>
+            </h3>
+            <div id="accordionPanelFour" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-md-2">
+                  <div class="col col-md-8">
+                    <pre data-start="5"><code class="language-javascript">
+                      function displayLoanTable(
+                        currentMonth,
+                        monthlyPayment,
+                        monthlyPrincipal,
+                        monthlyInterest,
+                        totalInterest,
+                        currentBalance
+                      ) {
+                        // Get elements in the table and template
+                        let tableBody = document.getElementById('results');
+                        let templateRow = document.getElementById('loanTemplate');
+                        let tableRow = document.importNode(templateRow.content, true);
+                        let rowCols = tableRow.querySelectorAll('td');
+                    
+                        // Assign relevant information to the indexes of rowCols, which corresponds
+                        // to the table cells in the row.
+                        rowCols[0].textContent = currentMonth;
+                        rowCols[1].textContent = `$${monthlyPayment.toFixed(2)}`;
+                        rowCols[2].textContent = `$${monthlyPrincipal.toFixed(2)}`;
+                        rowCols[3].textContent = `$${monthlyInterest.toFixed(2)}`;
+                        rowCols[4].textContent = `$${totalInterest.toFixed(2)}`;
+                        rowCols[5].textContent = `$${Math.abs(currentBalance.toFixed(2))}`;
+                    
+                        // Append the row to the table body.
+                        tableBody.appendChild(tableRow);
+                      }                                            
+                        </code></pre>
+                  </div>
+                  <div class="col col-md-4">
+                    <h5>diasplayLoanTable()</h5>
+                    <p>
+                      This function is responsible for displaying the loan
+                      information in a table, one row per iteration of the loop
+                      from which it is called.
+                    </p>
+                    <p>
+                      It takes in parameters for all the columns in the table,
+                      and we first declare variables to let us add the data to
+                      the table.
+                    </p>
+                    <p>
+                      Specifically of note, is the tableRow variable, where we
+                      store the contents of the template we've created in the
+                      HTML, where it also takes the containing children as well,
+                      which allows us to then declare a new variable called
+                      rowCols and store it's children inside.
+                    </p>
+                    <p>
+                      Next up we can "just" use the indexes of the rowCols
+                      variable which now each contains a "td" element, and
+                      assign relevant data to it, in some cases using string
+                      interpolation.
+                    </p>
+                    <p>
+                      Finally, we can append the entire tableRow, which now
+                      contains the newly added data in the rowCols indexes, to
+                      the tableBody variable, which goes to the results ID.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="accordionItemFive" class="accordion mt-1">
+          <div class="accordion-item bg-secondary-subtle">
+            <h3 class="accordion-header">
+              <button
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionPanelFive"
+                aria-expanded="true"
+                aria-controls="accordionPanelFive"
+                class="accordion-button bg-dark text-light"
+              >
+                displayLoanHeader()
+              </button>
+            </h3>
+            <div id="accordionPanelFive" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-md-2">
+                  <div class="col col-md-8">
+                    <pre data-start="5"><code class="language-javascript">
+                      function displayLoanHeader(
+                        monthlyPayment,
+                        loanAmount,
+                        totalInterest,
+                        totalCost
+                      ) {
+                        // Get the elements in the header of the calculator
+                        const displayHeader = document.getElementById('displayHeader');
+                        headerMonthlyPayment = displayHeader.querySelector('#monthlyPayment');
+                        headerTotalPrincipal = displayHeader.querySelector('#totalPrincipal');
+                        headerTotalInterest = displayHeader.querySelector('#totalInterest');
+                        headerTotalCost = displayHeader.querySelector('#totalCost');
+                    
+                        // Clear out the text inside the header to make it ready for the new data
+                        headerMonthlyPayment.innerText = '';
+                        headerTotalPrincipal.innerText = '';
+                        headerTotalInterest.innerText = '';
+                        headerTotalCost.innerText = '';
+                    
+                        // Post the new header data to the page
+                        headerMonthlyPayment.innerText = `$${monthlyPayment.toFixed(2)}`;
+                        headerTotalPrincipal.innerText = `$${loanAmount.toFixed(2)}`;
+                        headerTotalInterest.innerText = `$${totalInterest.toFixed(2)}`;
+                        headerTotalCost.innerText = `$${totalCost.toFixed(2)}`;
+                      }                                            
+                        </code></pre>
+                  </div>
+                  <div class="col col-md-4">
+                    <h5>displayLoanHeader()</h5>
+                    <p>
+                      The final function is responsible for displaying the most
+                      critical information on the top of the page, information
+                      that it takes in as parameters.
+                    </p>
+                    <p>
+                      We start by declaring a variable and assign a document ID
+                      element to it. In order to narrow our search and use a bit
+                      less resources going forward, we use this specific ID for
+                      the other selections.
+                    </p>
+                    <p>
+                      Next we make sure to clear the inner text of these
+                      elements and then finally add our new data.
                     </p>
                   </div>
                 </div>
