@@ -5,6 +5,8 @@
 
   // Get te values from the user input and trigger other function calls.
   function getValues() {
+    document.getElementById('results').innerHTML = '';
+
     // Get the value from amount input.
     let loanAmount = document.getElementById('loanAmount').value;
     // Get the value from term input.
@@ -18,6 +20,7 @@
     loanInterest = Number.parseFloat(loanInterest);
 
     let monthlyPayment = 0;
+    let currentMonth = 0;
     let currentBalance = loanAmount;
     let totalInterest = 0;
 
@@ -25,6 +28,8 @@
     let interestRate = loanInterest / 1200;
 
     for (let i = 0; i < loanTerm; i++) {
+      currentMonth += 1;
+
       // Calculate Payment amount
       monthlyPayment = calcMonthPay(loanAmount, interestRate, loanTerm);
 
@@ -45,6 +50,14 @@
       // console.log(totalInterest);
       // console.log(monthlyPrincipal);
       // console.log(currentBalance);
+      displayLoanTable(
+        currentMonth,
+        monthlyPayment,
+        monthlyPrincipal,
+        monthlyInterest,
+        totalInterest,
+        currentBalance
+      );
     }
     let totalCost = totalInterest + loanAmount;
 
@@ -61,6 +74,32 @@
     return (loanAmount * interestRate) / (1 - (1 + interestRate) ** -loanTerm);
   }
 
+  // Display the resulting loan calculation and amortization(?) table
+  function displayLoanTable(
+    currentMonth,
+    monthlyPayment,
+    monthlyPrincipal,
+    monthlyInterest,
+    totalInterest,
+    currentBalance
+  ) {
+    // Get elements in the table and template
+    let tableBody = document.getElementById('results');
+    let templateRow = document.getElementById('loanTemplate');
+    let tableRow = document.importNode(templateRow.content, true);
+    let rowCols = tableRow.querySelectorAll('td');
+
+    // Assign relevant information to the indexes of rowCols, which corresponds to the table cells in the row.
+    rowCols[0].textContent = currentMonth;
+    rowCols[1].textContent = `$${monthlyPayment.toFixed(2)}`;
+    rowCols[2].textContent = `$${monthlyPrincipal.toFixed(2)}`;
+    rowCols[3].textContent = `$${monthlyInterest.toFixed(2)}`;
+    rowCols[4].textContent = `$${totalInterest.toFixed(2)}`;
+    rowCols[5].textContent = `$${Math.abs(currentBalance.toFixed(2))}`;
+
+    // Append the row to the table body.
+    tableBody.appendChild(tableRow);
+  }
   // Display loan header
   function displayLoanHeader(
     monthlyPayment,
@@ -82,11 +121,9 @@
     headerTotalCost.innerText = '';
 
     // Post the new header data to the page
-    headerMonthlyPayment.innerText = `${monthlyPayment.toFixed(2)}`;
-    headerTotalPrincipal.innerText = `${loanAmount.toFixed(2)}`;
-    headerTotalInterest.innerText = `${totalInterest.toFixed(2)}`;
-    headerTotalCost.innerText = `${totalCost.toFixed(2)}`;
+    headerMonthlyPayment.innerText = `$${monthlyPayment.toFixed(2)}`;
+    headerTotalPrincipal.innerText = `$${loanAmount.toFixed(2)}`;
+    headerTotalInterest.innerText = `$${totalInterest.toFixed(2)}`;
+    headerTotalCost.innerText = `$${totalCost.toFixed(2)}`;
   }
-
-  // Display the resulting loan calculation and amoritization(?) table
 })((window.app = window.app || {}));

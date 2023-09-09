@@ -146,17 +146,15 @@
               <div class="col-12 gx-5 mt-5">
                 <div class="row">
                   <div class="col-6">Total Principal:</div>
-                  <div id="totalPrincipal" class="col-6 text-end">
-                    $25,000.00
-                  </div>
+                  <div id="totalPrincipal" class="col-6 text-end"></div>
                 </div>
                 <div class="row">
                   <div class="col-6">Total Interest:</div>
-                  <div id="totalInterest" class="col-6 text-end">$3,306.85</div>
+                  <div id="totalInterest" class="col-6 text-end"></div>
                 </div>
                 <div class="row">
                   <div class="col-6">Total Cost:</div>
-                  <div id="totalCost" class="col-6 text-end">$28,306.85</div>
+                  <div id="totalCost" class="col-6 text-end"></div>
                 </div>
               </div>
             </div>
@@ -168,14 +166,14 @@
               <thead class="fw-bold">
                 <tr>
                   <td>Month</td>
-                  <td>Payment</td>
-                  <td>Principal</td>
-                  <td>Interest</td>
-                  <td>Total Interest</td>
-                  <td>Balance</td>
+                  <td class="text-end">Payment</td>
+                  <td class="text-end">Principal</td>
+                  <td class="text-end">Interest</td>
+                  <td class="text-end">Total Interest</td>
+                  <td class="text-end">Balance</td>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody id="results"></tbody>
             </table>
           </div>
         </div>
@@ -221,14 +219,14 @@
         </div>
       </div>
     </footer>
-    <template>
+    <template id="loanTemplate">
       <tr>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td class="text-end"></td>
+        <td class="text-end"></td>
+        <td class="text-end"></td>
+        <td class="text-end"></td>
+        <td class="text-end"></td>
       </tr>
     </template>
 
